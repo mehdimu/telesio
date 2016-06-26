@@ -11,13 +11,23 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160623024940) do
+ActiveRecord::Schema.define(version: 20160626211936) do
 
   create_table "channels", force: :cascade do |t|
     t.string   "name"
-    t.string   "url"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
+
+  create_table "streams", force: :cascade do |t|
+    t.string   "url"
+    t.string   "source"
+    t.boolean  "live"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer  "channel_id"
+  end
+
+  add_index "streams", ["channel_id"], name: "index_streams_on_channel_id"
 
 end

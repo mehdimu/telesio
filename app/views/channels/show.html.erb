@@ -1,5 +1,5 @@
 
 Showing <%= @channel.name %>
 <iframe width="600px" height="600px"
-        src="<%= @channel.url %>" frameborder="0" allowfullscreen="1"></iframe>
-<p><%= link_to "Next channel", {:action => 'show', :id => @channel.id} %></p>
+        src="<%= @stream.url %>" frameborder="0" allowfullscreen="1"></iframe>
+<p><%= link_to "Next channel", {:action => 'show', :id => @channel.next.id } %></p>
