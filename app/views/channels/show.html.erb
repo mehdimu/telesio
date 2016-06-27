@@ -7,7 +7,7 @@
   </div>
 
   <div class="col-md-2">
-    Showing <%= @channel.name %>
+    <p id="current_channel">Showing <%= @channel.name %></p>
     <p><%= link_to "Next channel", {:action => 'show', :id => @channel.next.id } %></p>
   </div>
 
