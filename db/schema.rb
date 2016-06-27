@@ -13,6 +13,9 @@
 
 ActiveRecord::Schema.define(version: 20160626211936) do
 
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
+
   create_table "channels", force: :cascade do |t|
     t.string   "name"
     t.datetime "created_at", null: false
@@ -28,6 +31,7 @@ ActiveRecord::Schema.define(version: 20160626211936) do
     t.integer  "channel_id"
   end
 
-  add_index "streams", ["channel_id"], name: "index_streams_on_channel_id"
+  add_index "streams", ["channel_id"], name: "index_streams_on_channel_id", using: :btree
 
+  add_foreign_key "streams", "channels"
 end
