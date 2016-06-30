@@ -1,6 +1,37 @@
-<ul>
-  <% @channels.each do |c| %>
-      <li><%= c.name %></li>
-      <li><%= c.url %></li>
-  <% end %>
-</ul>
+<div class="row homepage_title">
+  <h1>Welcome to Telesio</h1>
+</div>
+
+<b>
+  <% flash.each do |name, msg| -%>
+      <%= content_tag :div, msg, class: name %>
+  <% end -%>
+</b>
+
+
+<div class="row">
+  <div class="col-md-12">
+    <%= form_for Channel.new, url: {action: "create"}, html: {class: "form-inline"} do |f| %>
+        <div class="form-group">
+          <label>Name</label>
+          <%= f.text_field :name, :placeholder => 'Channel Name' %>
+          <%= f.submit "Save", :class => 'btn btn-default'%>
+        </div>
+    <% end %>
+  </div>
+</div>
+
+<div class="row">
+  <ul>
+    <% @channels.each do |c| %>
+        <li>
+          <%= link_to "#{c.name}", channel_path(c) %>
+          => Live =>
+          <% c.streams.each do |stream| %>
+              <%= stream.live %>
+          <% end %>
+          <%= link_to 'Delete', c, method: :delete, data: {confirm: "Are you sure?"} %>
+        </li>
+    <% end %>
+  </ul>
+</div>

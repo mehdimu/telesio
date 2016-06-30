@@ -14,8 +14,12 @@
  *= require_self
  */
 
-body {
+.channelview {
     background: black;
+}
+
+.homepage_title {
+    text-align: center;
 }
 
 #current_channel {

@@ -13,7 +13,31 @@ class ChannelsController < ApplicationController
   end
 
   def index
-    @channels = Channel.all
+    @channels = Channel.active.all
+  end
+
+  def create
+    params.permit!
+    @channel = Channel.new(params[:channel])
+    if @channel.save
+      flash[:success] = "Channel saved with name: #{@channel.name}"
+      redirect_to '/channels'
+    else
+      flash[:warn] = "Channel did not save! :("
+      redirect_to '/channels'
+    end
+  end
+
+  def destroy
+    params.permit!
+    @channel = Channel.find(params[:id])
+    @channel.mark_as_deleted
+    flash[:success] = "Deleted channel #{@channel.name}"
+    redirect_to '/channels'
+  end
+
+  def new
+    raise 'Not Implemented'
   end
 
 end
