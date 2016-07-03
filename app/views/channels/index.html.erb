@@ -25,7 +25,12 @@
   <ul>
     <% @channels.each do |c| %>
         <li>
-          <%= link_to "#{c.name}", channel_path(c) %>
+          <%= c.id %>:
+          <% if c.streams.count > 0 %>
+            <%= link_to "#{c.name}", channel_path(c) %>
+          <% else %>
+            <%= c.name %>
+          <% end %>
           => Live =>
           <% c.streams.each do |stream| %>
               <%= stream.live %>
@@ -35,3 +40,4 @@
     <% end %>
   </ul>
 </div>
+

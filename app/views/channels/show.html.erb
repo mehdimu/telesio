@@ -1,14 +1,29 @@
 <div class="row channelview">
   <div class="col-md-10">
-    <div class="embed-responsive-16by9">
-      <iframe class="embed-responsive-item" width="100%" height="600px"
-              src="<%= @stream.url %>" scrolling="0" frameborder="0" allowfullscreen="1"></iframe>
-    </div>
+
+    <% if @stream.source == 'embed' %>
+        <%= render 'embed' %>
+    <% else %>
+        <%= render 'm3u8' %>
+    <% end %>
+
   </div>
 
   <div class="col-md-2">
     <p id="current_channel">Showing <%= @channel.name %></p>
-    <p><%= link_to "Next channel", {:action => 'show', :id => @channel.next.id } %></p>
+    <p><%= link_to "Next channel", {:action => 'show', :id => @channel.next.id }, html_options = {:onclick => 'return cleanUp();' } %></p>
   </div>
 
 </div>
+
+<script>
+  function cleanUp() {
+    var m3u8Player = $('#player').length;
+    if (m3u8Player > 0) {
+      var player = videojs('player');
+      player.dispose();
+    }
+  }
+
+</script>
+

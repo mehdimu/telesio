@@ -2,14 +2,18 @@ class ChannelsController < ApplicationController
 
 
   def list
-
   end
 
   def show
     @channel = Channel.where(:id => params[:id]).first
-    # get first live stream for that channel
-    @stream = Stream.where(:channel_id => @channel.id).where(:live => true).first
-    redirect_to '/channels' if @channel.nil?
+    # get first live stream for that channel, and prefer m3u8 over embed
+    streams = @channel.live_streams
+    m3u8_stream = streams.where(:source => 'm3u8').first
+    embed_stream = streams.where(:source => 'embed').first
+    @stream = m3u8_stream.nil? ? embed_stream : m3u8_stream
+    # redirect to channels if channel is deleted
+    flash[:warn] = "Channel is deleted" if @channel.nil? || @channel.deleted
+    redirect_to '/channels' if @channel.nil? || @channel.deleted
   end
 
   def index
@@ -34,10 +38,6 @@ class ChannelsController < ApplicationController
     @channel.mark_as_deleted
     flash[:success] = "Deleted channel #{@channel.name}"
     redirect_to '/channels'
-  end
-
-  def new
-    raise 'Not Implemented'
   end
 
 end

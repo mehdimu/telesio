@@ -3,13 +3,17 @@ class Channel < ActiveRecord::Base
   scope :active, -> { where(deleted: false)}
 
   def next
-    n = Channel.where("id > ?", id).first
+    n = Channel.active.where("id > ?", id).first
     return Channel.first if n.nil?
     return n
   end
 
+  def live_streams
+    self.streams.where(:live => true)
+  end
+
   def prev
-    Channel.where("id < ?", id).first
+    Channel.active.where("id < ?", id).first
   end
 
   def mark_as_deleted

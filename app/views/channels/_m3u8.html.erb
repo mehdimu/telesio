@@ -1,0 +1,8 @@
+<video id="player" width=960 height=540 class="video-js vjs-default-skin" controls preload="auto" data-setup="{}">
+  <source src="<%= @stream.url %>" type="application/x-mpegURL">
+</video>
+
+<script>
+  var player = videojs('player');
+  player.play();
+</script>
