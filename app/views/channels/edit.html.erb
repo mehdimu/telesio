@@ -1,0 +1,51 @@
+<div>
+  Editing Channel
+  <%= @channel.name %>
+
+  <%= form_for @channel, url: {action: 'update'}, html: {class: "form-inline"} do |f| %>
+      <div class="form-group">
+        <label>Name</label>
+        <%= f.text_field :name, :placeholder => @channel.name, class: 'form-control' %>
+        <%= f.submit "Save", :class => 'btn btn-default'%>
+      </div>
+  <% end %>
+
+  <p>Streams</p>
+
+  <%= form_for @channel.streams.new, url: {controller: 'streams',action: 'create', channel_id: @channel.id}, html: {class: "form-inline"} do |f| %>
+      <li>
+        <div class="form-group">
+          <label>URL:</label>
+          <%= f.text_field :url, :placeholder => 'http://example.com', class: 'form-control' %>
+          <label>Source:</label>
+          <%= f.text_field :source, :placeholder => 'embed or m3u8', class: 'form-control' %>
+          <%= f.submit "Save", :class => 'btn btn-default'%>
+        </div>
+      </li>
+  <% end %>
+
+
+  <ol>
+  <% @channel.streams.where("id is not null").each do |stream| %>
+    <p>
+      <%= form_for stream, url: {controller: 'streams',action: 'update'}, html: {class: "form-inline"} do |f| %>
+        <li>
+          <div class="form-group">
+            <label>ID:</label>
+            <%= stream.id %>
+          <label>URL:</label>
+          <%= f.text_field :url, :placeholder => stream.url, class: 'form-control' %>
+          <label>Source:</label>
+          <%= f.text_field :source, :placeholder => stream.source, class: 'form-control' %>
+          <%= f.submit "Save", :class => 'btn btn-default'%>
+        </div>
+        </li>
+      <% end %>
+    </p>
+  <% end %>
+  </ol>
+
+
+
+
+</div>

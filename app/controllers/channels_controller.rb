@@ -20,15 +20,23 @@ class ChannelsController < ApplicationController
     @channels = Channel.active.all
   end
 
+  def update
+    params.permit!
+    @channel = Channel.find(params[:id])
+    @channel.update(params[:channel])
+    flash[:success] = 'Updated successful'
+    redirect_to action: 'edit', id: @channel.id
+  end
+
   def create
     params.permit!
     @channel = Channel.new(params[:channel])
     if @channel.save
       flash[:success] = "Channel saved with name: #{@channel.name}"
-      redirect_to '/channels'
+      redirect_to action: 'index'
     else
       flash[:warn] = "Channel did not save! :("
-      redirect_to '/channels'
+      redirect_to action: 'index'
     end
   end
 
@@ -37,7 +45,12 @@ class ChannelsController < ApplicationController
     @channel = Channel.find(params[:id])
     @channel.mark_as_deleted
     flash[:success] = "Deleted channel #{@channel.name}"
-    redirect_to '/channels'
+    redirect_to action: 'index'
+  end
+
+
+  def edit
+    @channel = Channel.find(params[:id])
   end
 
 end

@@ -1,6 +1,7 @@
 class Channel < ActiveRecord::Base
   has_many :streams
   scope :active, -> { where(deleted: false)}
+  validates :name, presence: true
 
   def next
     n = Channel.active.where("id > ?", id).first

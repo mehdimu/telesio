@@ -36,6 +36,8 @@
               <%= stream.live %>
           <% end %>
           <%= link_to 'Delete', c, method: :delete, data: {confirm: "Are you sure?"} %>
+          /
+          <%= link_to 'Edit', controller: 'channels', action: 'edit', id: c %>
         </li>
     <% end %>
   </ul>
