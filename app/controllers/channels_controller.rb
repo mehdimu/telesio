@@ -6,6 +6,7 @@ class ChannelsController < ApplicationController
 
   def show
     @channel = Channel.where(:id => params[:id]).first
+    @channels = Channel.active # get all channels for showing in the list
     # get first live stream for that channel, and prefer m3u8 over embed
     streams = @channel.live_streams
     m3u8_stream = streams.where(:source => 'm3u8').first

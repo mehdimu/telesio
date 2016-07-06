@@ -25,3 +25,12 @@
 #current_channel {
     color: red;
 }
+
+a.channel-list-item {
+    color: yellow;
+    background-color: black;
+}
+
+.channel-list-group {
+    padding-right: 10%;
+}

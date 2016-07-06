@@ -1,0 +1,8 @@
+<div class="list-group channel-list-group">
+  <% @channels.each do |channel| %>
+      <%= link_to channel.name,
+                  {:action => 'show', :id => channel.id },
+                  html_options = {:class => 'list-group-item channel-list-item', :onclick => 'return cleanUp();' } %>
+  <% end %>
+</div>
+
