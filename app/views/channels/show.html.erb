@@ -12,7 +12,7 @@
   <div class="col-md-2">
     <p id="current_channel">Showing <%= @channel.name %></p>
     <p><%= link_to "Next channel", {:action => 'show', :id => @channel.next.id },
-                   html_options = {:onclick => 'return cleanUp();' } %></p>
+                   html_options = {:onclick => 'return cleanUp();', :id => 'nextChannel'} %></p>
     <%= render 'channel_list' %>
   </div>
 </div>
@@ -25,5 +25,32 @@
       player.dispose();
     }
   }
+
+  key('right', nextChannel);
+  key('enter', fullScreen);
+  key('up', volumeUp);
+  key('down', volumeDown);
+
+  function nextChannel() {
+    var currChannel = $('#nextChannel')[0];
+    window.location.href = currChannel.href;
+  }
+
+  function fullScreen() {
+    player.requestFullscreen();
+  }
+
+  function volumeUp() {
+    var vol = player.volume();
+    var newVol = vol + 0.5;
+    player.volume(newVol);
+  }
+
+  function volumeDown() {
+    var vol = player.volume();
+    var newVol = vol - 0.5;
+    player.volume(newVol);
+  }
+
 </script>
 
