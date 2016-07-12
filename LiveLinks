@@ -15,4 +15,5 @@ http://app.pakistanvision.tv:1935/live/PTVhome/player.m3u8
 #EXTINF:-1, Sama TV
 http://samaatr.videocdn.scaleengine.net/samaatr-iphone/play/samaatr_264k.stream/playlist.m3u8
 
-
+#EXTINF:-1, HUM Masala
+http://5.254.101.203:1935/live/MasalaTV.stream_1004/playlist.m3u8
