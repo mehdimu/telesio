@@ -17,3 +17,13 @@ http://samaatr.videocdn.scaleengine.net/samaatr-iphone/play/samaatr_264k.stream/
 
 #EXTINF:-1, HUM Masala
 http://5.254.101.203:1935/live/MasalaTV.stream_1004/playlist.m3u8
+
+#EXTINF:-1, ARY News
+http://158.69.229.29:1935/liveorigin/myStream/chunklist_w357199522.m3u
+
+#EXTINF:-1, ARY Digital
+http://149.202.205.24:1935/DIGITAL/myStream/playlist.m3u8
+
+#EXTINF:-1, Dunya News
+http://imob.dunyanews.tv:1935/live/smil:stream.smil/chunklist_w390774530_b200000.m3u8
+
