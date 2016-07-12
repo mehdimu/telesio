@@ -1,7 +1,7 @@
 #EXTM3U
 
 #EXTINF:-1, Geo News
-http://stream.jeem.tv/geo/geonews/playlist.m3u8
+http://stream.jeem.tv/geo/geonewsofficial_sub/playlist.m3u8
 
 #EXTINF:-1, HUM TV
 http://5.254.101.203:1935/humtv/humtv.stream_1004/playlist.m3u8
