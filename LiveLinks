@@ -4,7 +4,7 @@
 http://stream.jeem.tv/geo/geonewsofficial_sub/playlist.m3u8
 
 #EXTINF:-1, HUM TV
-http://5.254.101.203:1935/humtv/humtv.stream_1004/playlist.m3u8
+http://5.254.101.203:1935/humtv/humtv/playlist.m3u8
 
 #EXTINF:-1, ARY Zinadgi
 http://158.69.229.29:1935/ARYZINDAGI/myStream/playlist.m3u8
